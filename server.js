@@ -12,17 +12,17 @@ const io = socket(server);
 const database = {
 	rooms:[
 		{
-			roomName: '#Global',
+			roomName: 'Global',
 			messages: [],
 			users: []
 		},
 		{
-			roomName: '#Room_1',
+			roomName: 'Room_1',
 			messages: [],
 			users: []
 		},
 		{
-			roomName: '#Room_2',
+			roomName: 'Room_2',
 			messages: [],
 			users: []
 		}
@@ -82,6 +82,7 @@ io.on('connection',socket => {
     })
     io.emit('COME_TO_ROOM', database.rooms);
   })
+
 	socket.on('disconnect', data => {
     database.rooms.forEach(room => {
       room.users = room.users.filter(user => user.userSocket!==socket.id)
